@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "VK Video Downloader",
+  "version": "1.0.0",
+  "permissions": ["activeTab", "scripting"],
+  "action": {},
+  "background": {
+	"service_worker": "service-worker.js"
+  }
+}
