@@ -7,9 +7,9 @@ new MutationObserver(() => {
     lastUrl = location.href;
   }
   if (location.pathname.includes('/video-')) {
-    const interval = setInterval(() => {
+    const checker = setInterval(() => {
       if (document.querySelector('div.VideoPage__video')) {
-        clearInterval(interval);
+        clearInterval(checker);
         main();
       }
     }, 100);
@@ -61,13 +61,13 @@ function main() {
     label.innerText = 'Скачать:';
     label.style.margin = '0 2px 0 0';
 
-    let panel = document.createElement('div');
+    const panel = document.createElement('div');
     panel.id = 'vkVideoDownloaderPanel';
     panel.style.margin = '8px 12px';
     panel.appendChild(label);
 
     for (const [quality, url] of Object.entries(sources)) {
-      let aTag = document.createElement('a');
+      const aTag = document.createElement('a');
       aTag.href = url;
       aTag.innerText = quality;
       aTag.style.margin = '0 2px';
@@ -83,7 +83,7 @@ function main() {
     label.style.color = '#f00';
     label.style.margin = '0 2px 0 0';
 
-    let panel = document.createElement('div');
+    const panel = document.createElement('div');
     panel.id = 'vkVideoDownloaderPanel';
     panel.style.margin = '8px 12px';
     panel.appendChild(label);

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "VK Video Downloader",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Скачивайте видео из мобильной веб-версии VK в желаемом качестве",
   "permissions": ["activeTab"],
   "action": {},
@@ -20,5 +20,6 @@
   },
   "author": {
     "email": "volozhaninkirill@gmail.com"
-  }
+  },
+  "homepage_url": "https://github.com/JustKappaMan/VK-Video-Downloader"
 }
