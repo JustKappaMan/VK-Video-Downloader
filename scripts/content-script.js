@@ -26,72 +26,71 @@ function main() {
     document.querySelector('div.VideoPage__video video') &&
     !document.querySelector('#vkVideoDownloaderPanel')
   ) {
-    showPanel(createDownloadPanel(getSources()));
+    showPanel(createDownloadPanel(getVideoSources()));
   }
+}
 
-  function getSources() {
-    const sourceTags = document.querySelectorAll(
-      'video source[type="video/mp4"]'
-    );
-    let sources = {};
+function getVideoSources() {
+  const sourceTags = document.querySelectorAll(
+    'video source[type="video/mp4"]'
+  );
+  let videoSources = {};
 
-    for (const tag of sourceTags) {
-      if (tag.src.includes('&type=4')) {
-        // Да, 144p выбивается из общей логики и имеет тип 4.
-        // Возможно отглоски какого-то легаси.
-        sources['144p'] = tag.src;
-      } else if (tag.src.includes('&type=0')) {
-        sources['240p'] = tag.src;
-      } else if (tag.src.includes('&type=1')) {
-        sources['360p'] = tag.src;
-      } else if (tag.src.includes('&type=2')) {
-        sources['480p'] = tag.src;
-      } else if (tag.src.includes('&type=3')) {
-        sources['720p'] = tag.src;
-      } else if (tag.src.includes('&type=5')) {
-        sources['1080p'] = tag.src;
-      }
+  for (const tag of sourceTags) {
+    if (tag.src.includes('&type=4')) {
+      // Yes, 144p corresponds to type 4. May be some legacy stuff.
+      videoSources['144p'] = tag.src;
+    } else if (tag.src.includes('&type=0')) {
+      videoSources['240p'] = tag.src;
+    } else if (tag.src.includes('&type=1')) {
+      videoSources['360p'] = tag.src;
+    } else if (tag.src.includes('&type=2')) {
+      videoSources['480p'] = tag.src;
+    } else if (tag.src.includes('&type=3')) {
+      videoSources['720p'] = tag.src;
+    } else if (tag.src.includes('&type=5')) {
+      videoSources['1080p'] = tag.src;
     }
-
-    return sources;
   }
 
-  function createDownloadPanel(sources) {
-    const label = document.createElement('span');
-    label.innerText = 'Скачать:';
-    label.style.margin = '0 2px 0 0';
+  return videoSources;
+}
 
-    const panel = document.createElement('div');
-    panel.id = 'vkVideoDownloaderPanel';
-    panel.style.margin = '8px 12px';
-    panel.appendChild(label);
+function createDownloadPanel(videoSources) {
+  const label = document.createElement('span');
+  label.innerText = 'Скачать:';
+  label.style.marginRight = '2px';
 
-    for (const [quality, url] of Object.entries(sources)) {
-      const aTag = document.createElement('a');
-      aTag.href = url;
-      aTag.innerText = quality;
-      aTag.style.margin = '0 2px';
-      panel.appendChild(aTag);
-    }
+  const panel = document.createElement('div');
+  panel.id = 'vkVideoDownloaderPanel';
+  panel.style.margin = '8px 12px';
+  panel.appendChild(label);
 
-    return panel;
+  for (const [quality, url] of Object.entries(videoSources)) {
+    const aTag = document.createElement('a');
+    aTag.href = url;
+    aTag.innerText = quality;
+    aTag.style.margin = '0 2px';
+    panel.appendChild(aTag);
   }
 
-  function createErrorPanel() {
-    const label = document.createElement('span');
-    label.innerText = 'Видео со стороннего сайта. Воспользуйтесь инструментами для скачивания с исходного сайта.';
-    label.style.color = '#f00';
-    label.style.margin = '0 2px 0 0';
+  return panel;
+}
 
-    const panel = document.createElement('div');
-    panel.id = 'vkVideoDownloaderPanel';
-    panel.style.margin = '8px 12px';
-    panel.appendChild(label);
+function createErrorPanel() {
+  const label = document.createElement('span');
+  label.innerText =
+    'Видео со стороннего сайта. Воспользуйтесь инструментами для скачивания с исходного сайта.';
+  label.style.color = '#f00';
 
-    return panel;
-  }
+  const panel = document.createElement('div');
+  panel.id = 'vkVideoDownloaderPanel';
+  panel.style.margin = '8px 12px';
+  panel.appendChild(label);
 
-  function showPanel(panel) {
-    document.querySelector('div.VideoPage__video').after(panel);
-  }
+  return panel;
+}
+
+function showPanel(panel) {
+  document.querySelector('div.VideoPage__video').after(panel);
 }
