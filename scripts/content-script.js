@@ -8,7 +8,10 @@ new MutationObserver(() => {
   }
   if (location.pathname.includes('/video-')) {
     const checker = setInterval(() => {
-      if (document.querySelector('div.VideoPage__video')) {
+      if (
+        document.querySelector('div.VideoPage__video') &&
+        !document.querySelector('#vkVideoDownloaderPanel')
+      ) {
         clearInterval(checker);
         main();
       }
@@ -17,15 +20,9 @@ new MutationObserver(() => {
 }).observe(document, { subtree: true, childList: true });
 
 function main() {
-  if (
-    document.querySelector('div.VideoPage__video iframe') &&
-    !document.querySelector('#vkVideoDownloaderPanel')
-  ) {
+  if (document.querySelector('div.VideoPage__video iframe')) {
     showPanel(createErrorPanel());
-  } else if (
-    document.querySelector('div.VideoPage__video video') &&
-    !document.querySelector('#vkVideoDownloaderPanel')
-  ) {
+  } else if (document.querySelector('div.VideoPage__video video')) {
     showPanel(createDownloadPanel(getVideoSources()));
   }
 }
@@ -38,7 +35,8 @@ function getVideoSources() {
 
   for (const tag of sourceTags) {
     if (tag.src.includes('&type=4')) {
-      // Yes, 144p corresponds to type 4. May be some legacy stuff.
+      // Да, 144p выбивается из общей логики и имеет тип 4.
+      // Возможно отголоски какого-то легаси.
       videoSources['144p'] = tag.src;
     } else if (tag.src.includes('&type=0')) {
       videoSources['240p'] = tag.src;
