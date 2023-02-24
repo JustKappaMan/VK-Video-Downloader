@@ -48,6 +48,10 @@ function getVideoSources() {
       videoSources['720p'] = tag.src;
     } else if (tag.src.includes('&type=5')) {
       videoSources['1080p'] = tag.src;
+    } else if (tag.src.includes('&type=6')) {
+      videoSources['1440p'] = tag.src;
+    } else if (tag.src.includes('&type=7')) {
+      videoSources['2160p'] = tag.src;
     }
   }
 
