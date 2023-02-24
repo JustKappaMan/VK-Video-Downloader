@@ -1,9 +1,8 @@
 {
   "manifest_version": 3,
   "name": "VK Video Downloader",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Скачивайте видео с сайта «ВКонтакте» в желаемом качестве",
-  "permissions": ["activeTab"],
   "action": {},
   "content_scripts": [
     {
