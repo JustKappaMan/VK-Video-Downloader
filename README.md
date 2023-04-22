@@ -1,6 +1,6 @@
 # VK Video Downloader
 ![MIT License](https://img.shields.io/github/license/JustKappaMan/VK-Video-Downloader)
-![Version 1.0.7](https://img.shields.io/badge/version-1.0.7-blue)
+![Version 1.0.8](https://img.shields.io/badge/version-1.0.8-blue)
 
 VK — хранилище интересного мне видеоконтента. Относительно недавно просмотр видео на бюджетных устройствах (особенно в приложении) стал невозможен по ряду причин:
 * Постоянные ошибки

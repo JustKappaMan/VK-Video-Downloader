@@ -6,7 +6,7 @@ new MutationObserver(() => {
   if (location.href !== lastUrl) {
     lastUrl = location.href;
   }
-  if (location.pathname.includes('/video-')) {
+  if (location.pathname.startsWith('/video') && !location.pathname.startsWith('/videos')) {
     const checker = setInterval(() => {
       if (
         document.querySelector('div.VideoPage__video') &&
