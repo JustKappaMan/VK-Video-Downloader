@@ -1,14 +1,25 @@
 {
   "manifest_version": 3,
   "name": "VK Video Downloader",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "Скачивайте видео с сайта «ВКонтакте» в желаемом качестве",
   "action": {},
   "content_scripts": [
     {
-      "js": ["scripts/content-script.js"],
+      "js": ["scripts/mobile.js"],
       "matches": ["https://m.vk.com/*"],
       "run_at": "document_idle"
+    },
+    {
+      "js": ["scripts/desktop.js"],
+      "matches": ["https://vk.com/*"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["scripts/desktop-injection.js"],
+      "matches": ["https://vk.com/*"]
     }
   ],
   "icons": {

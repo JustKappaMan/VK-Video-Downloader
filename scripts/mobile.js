@@ -28,15 +28,17 @@ function main() {
 }
 
 function getVideoSources() {
-  const sourceTags = document.querySelectorAll(
+  const sourceTags = [...document.querySelectorAll(
     'video source[type="video/mp4"]'
-  );
+  )].reverse();
   let videoSources = {};
 
   for (const tag of sourceTags) {
     if (tag.src.includes('&type=4')) {
-      // Да, 144p выбивается из общей логики и имеет тип 4.
-      // Возможно отголоски какого-то легаси.
+      /*
+      * Да, 144p выбивается из общей логики и имеет тип 4.
+      * Возможно отголоски какого-то легаси.
+      */
       videoSources['144p'] = tag.src;
     } else if (tag.src.includes('&type=0')) {
       videoSources['240p'] = tag.src;
