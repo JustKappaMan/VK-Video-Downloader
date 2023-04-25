@@ -1,23 +1,28 @@
 'use strict';
 
 let lastUrl = location.href;
+let mainHasBeenCalled = false;
 
 new MutationObserver(() => {
   if (location.href !== lastUrl) {
     lastUrl = location.href;
+    mainHasBeenCalled = false;
   }
-  if (location.pathname.startsWith('/video') && !location.pathname.startsWith('/videos')) {
+  if (
+    location.pathname.startsWith('/video') &&
+    !location.pathname.startsWith('/videos')
+  ) {
     const checker = setInterval(() => {
-      if (
-        document.querySelector('div.VideoPage__video') &&
-        !document.querySelector('#vkVideoDownloaderPanel')
-      ) {
+      if (document.querySelector('div.VideoPage__video')) {
         clearInterval(checker);
-        main();
+        if (!mainHasBeenCalled) {
+          mainHasBeenCalled = true;
+          main();
+        }
       }
     }, 100);
   }
-}).observe(document, { subtree: true, childList: true });
+}).observe(document.body, { subtree: true, childList: true });
 
 function main() {
   if (document.querySelector('div.VideoPage__video iframe')) {
@@ -28,17 +33,17 @@ function main() {
 }
 
 function getVideoSources() {
-  const sourceTags = [...document.querySelectorAll(
-    'video source[type="video/mp4"]'
-  )].reverse();
+  const sourceTags = Array.from(
+    document.querySelectorAll('video source[type="video/mp4"]')
+  ).reverse();
   let videoSources = {};
 
   for (const tag of sourceTags) {
     if (tag.src.includes('&type=4')) {
       /*
-      * Да, 144p выбивается из общей логики и имеет тип 4.
-      * Возможно отголоски какого-то легаси.
-      */
+       * Да, 144p выбивается из общей логики и имеет тип 4.
+       * Возможно отголоски какого-то легаси.
+       */
       videoSources['144p'] = tag.src;
     } else if (tag.src.includes('&type=0')) {
       videoSources['240p'] = tag.src;

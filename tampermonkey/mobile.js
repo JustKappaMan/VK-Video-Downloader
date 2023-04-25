@@ -1,13 +1,12 @@
 // ==UserScript==
 // @name         VK-Video-Downloader-mobile
 // @namespace    https://github.com/JustKappaMan
-// @version      1.1.0
+// @version      1.1.1
 // @description  Скачивайте видео с сайта «ВКонтакте» в желаемом качестве
 // @author       Kirill "JustKappaMan" Volozhanin
 // @match        https://m.vk.com/*
 // @run-at       document-idle
-// @iconURL      https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/tampermonkey/icons/icon32.png
-// @icon64URL    https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/tampermonkey/icons/icon64.png
+// @iconURL      https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/tampermonkey/icons/icon128.png
 // @homepageURL  https://github.com/JustKappaMan/VK-Video-Downloader
 // @supportURL   https://github.com/JustKappaMan/VK-Video-Downloader/issues
 // @downloadURL  https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/tampermonkey/scripts/mobile.js
@@ -19,26 +18,29 @@
   'use strict';
 
   let lastUrl = location.href;
+  let mainHasBeenCalled = false;
 
   new MutationObserver(() => {
     if (location.href !== lastUrl) {
       lastUrl = location.href;
+      mainHasBeenCalled = false;
     }
+
     if (
       location.pathname.startsWith('/video') &&
       !location.pathname.startsWith('/videos')
     ) {
       const checker = setInterval(() => {
-        if (
-          document.querySelector('div.VideoPage__video') &&
-          !document.querySelector('#vkVideoDownloaderPanel')
-        ) {
+        if (document.querySelector('div.VideoPage__video')) {
           clearInterval(checker);
-          main();
+          if (!mainHasBeenCalled) {
+            mainHasBeenCalled = true;
+            main();
+          }
         }
       }, 100);
     }
-  }).observe(document, { subtree: true, childList: true });
+  }).observe(document.body, { subtree: true, childList: true });
 
   function main() {
     if (document.querySelector('div.VideoPage__video iframe')) {
@@ -49,9 +51,9 @@
   }
 
   function getVideoSources() {
-    const sourceTags = [
-      ...document.querySelectorAll('video source[type="video/mp4"]'),
-    ].reverse();
+    const sourceTags = Array.from(
+      document.querySelectorAll('video source[type="video/mp4"]')
+    ).reverse();
     let videoSources = {};
 
     for (const tag of sourceTags) {

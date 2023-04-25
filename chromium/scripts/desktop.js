@@ -13,19 +13,16 @@ new MutationObserver(() => {
     const checker = setInterval(() => {
       if (document.querySelector('#video_player')) {
         clearInterval(checker);
-        main();
+        if (!mainHasBeenCalled) {
+          mainHasBeenCalled = true;
+          main();
+        }
       }
     }, 100);
   }
-}).observe(document, { subtree: true, childList: true });
+}).observe(document.body, { subtree: true, childList: true });
 
 function main() {
-  if (mainHasBeenCalled) {
-    return;
-  } else {
-    mainHasBeenCalled = true;
-  }
-
   if (document.querySelector('#video_player iframe')) {
     showErrorPanel();
   } else if (document.querySelector('#video_player video')) {
@@ -51,13 +48,13 @@ function showErrorPanel() {
   panel.id = 'vkVideoDownloaderPanel';
   panel.style.margin = '8px 0';
   panel.appendChild(label);
-  
-  /* 
-  * Не под всеми видео есть блок с названием.
-  * Если он есть - располагаем ссылки над ним.
-  * Иначе - над блоком с кнопками лайка, репоста и т.п.
-  * Таким образом ссылки всегда будут находиться сразу под плеером.
-  */
+
+  /*
+   * Не под всеми видео есть блок с названием.
+   * Если он есть - располагаем ссылки над ним.
+   * Иначе - над блоком с кнопками лайка, репоста и т.п.
+   * Таким образом ссылки всегда будут находиться сразу под плеером.
+   */
   const videoTitleBlock = document.querySelector('div.mv_title_wrap');
   if (videoTitleBlock) {
     panel.style.margin = '8px 0';
