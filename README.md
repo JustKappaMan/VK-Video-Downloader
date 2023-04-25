@@ -22,9 +22,9 @@ VK — хранилище интересного мне видеоконтент
   * Выберите папку __chromium__ из распакованного архива
 * Любые браузеры с поддержкой [Tampermonkey](https://www.tampermonkey.net/)
   * Создайте в Tampermonkey новый скрипт, __удалите из него стартовый код__
-  * Скопируйте в него содержимое файла [tampermonkey/desktop.js](https://github.com/JustKappaMan/VK-Video-Downloader/blob/main/tampermonkey/desktop.js) и сохраните его
+  * Скопируйте в него содержимое файла [tampermonkey/scripts/desktop.js](https://github.com/JustKappaMan/VK-Video-Downloader/blob/main/tampermonkey/scripts/desktop.js) и сохраните его
   * Создайте в Tampermonkey новый скрипт, __удалите из него весь стартовый код__
-  * Скопируйте в него содержимое файла [tampermonkey/mobile.js](https://github.com/JustKappaMan/VK-Video-Downloader/blob/main/tampermonkey/mobile.js) и сохраните его
+  * Скопируйте в него содержимое файла [tampermonkey/scripts/mobile.js](https://github.com/JustKappaMan/VK-Video-Downloader/blob/main/tampermonkey/scripts/mobile.js) и сохраните его
 ## Как пользоваться
 * Откройте любое видео на [vk.com](https://vk.com/) или [m.vk.com](https://m.vk.com/)
 * Кликните по одной из появившихся под плеером ссылок для скачивания
