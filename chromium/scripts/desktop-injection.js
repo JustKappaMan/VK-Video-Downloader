@@ -1,7 +1,7 @@
 'use strict';
 
 (() => {
-  let videoSources = {
+  const videoSources = {
     '144p': window.mvcur.player.vars.url144,
     '240p': window.mvcur.player.vars.url240,
     '360p': window.mvcur.player.vars.url360,

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK-Video-Downloader-desktop
 // @namespace    https://github.com/JustKappaMan
-// @version      1.1.1
+// @version      1.1.2
 // @license      MIT
 // @description  Скачивайте видео с сайта «ВКонтакте» в желаемом качестве
 // @author       Kirill "JustKappaMan" Volozhanin
@@ -49,7 +49,7 @@
   }
 
   function createDownloadPanel() {
-    let videoSources = {
+    const videoSources = {
       '144p': window.mvcur.player.vars.url144,
       '240p': window.mvcur.player.vars.url240,
       '360p': window.mvcur.player.vars.url360,
@@ -83,8 +83,7 @@
 
   function createErrorPanel() {
     const label = document.createElement('span');
-    label.innerText =
-      'Видео со стороннего сайта. Воспользуйтесь инструментами для скачивания с исходного сайта.';
+    label.innerText = 'Видео со стороннего сайта. Воспользуйтесь инструментами для скачивания с исходного сайта.';
     label.style.color = '#f00';
 
     const panel = document.createElement('div');
