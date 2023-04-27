@@ -15,7 +15,7 @@ VK — хранилище интересного мне видеоконтент
 Иконки предоставлены [Rizki Ahmad Fauzi](https://www.flaticon.com/authors/rizki-ahmad-fauzi).
 ## Как установить
 * Браузеры на основе Chromium
-  * Нажмите __Code__ [или вот сюда](https://codeload.github.com/JustKappaMan/VK-Video-Downloader/zip/refs/heads/main), скачайте архив с исходным кодом, распакуйте скачанный архив
+  * Нажмите __Code__ или [вот сюда](https://codeload.github.com/JustKappaMan/VK-Video-Downloader/zip/refs/heads/main), скачайте архив с исходным кодом, распакуйте скачанный архив
   * Откройте в браузере раздел __Расширения__
   * Активируйте __Режим разработчика__ (если такая функция имеется)
   * Нажмите __Загрузить распакованное__ (или нечто подобное)

@@ -2,6 +2,7 @@
 // @name         VK-Video-Downloader-desktop
 // @namespace    https://github.com/JustKappaMan
 // @version      1.1.1
+// @license      MIT
 // @description  Скачивайте видео с сайта «ВКонтакте» в желаемом качестве
 // @author       Kirill "JustKappaMan" Volozhanin
 // @match        https://vk.com/*
