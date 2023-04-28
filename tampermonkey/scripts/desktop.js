@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK-Video-Downloader-desktop
 // @namespace    https://github.com/JustKappaMan
-// @version      1.1.2
+// @version      1.1.3
 // @license      MIT
 // @description  Скачивайте видео с сайта «ВКонтакте» в желаемом качестве
 // @author       Kirill "JustKappaMan" Volozhanin
@@ -19,34 +19,31 @@
   'use strict';
 
   let lastUrl = location.href;
-  let mainHasBeenCalled = false;
+  let checkerHasBeenCalled = false;
+  let showPanelHasBeenCalled = false;
 
   new MutationObserver(() => {
     if (location.href !== lastUrl) {
       lastUrl = location.href;
-      mainHasBeenCalled = false;
+      checkerHasBeenCalled = false;
+      showPanelHasBeenCalled = false;
     }
 
-    if (location.search.includes('z=video')) {
+    if (location.search.includes('z=video') && !checkerHasBeenCalled) {
+      checkerHasBeenCalled = true;
       const checker = setInterval(() => {
-        if (document.querySelector('#video_player')) {
+        if (!showPanelHasBeenCalled && document.querySelector('#video_player video')) {
+          showPanelHasBeenCalled = true;
           clearInterval(checker);
-          if (!mainHasBeenCalled) {
-            mainHasBeenCalled = true;
-            main();
-          }
+          showPanel(createDownloadPanel());
+        } else if (!showPanelHasBeenCalled && document.querySelector('#video_player iframe')) {
+          showPanelHasBeenCalled = true;
+          clearInterval(checker);
+          showPanel(createErrorPanel());
         }
-      }, 100);
+      }, 500);
     }
   }).observe(document.body, { subtree: true, childList: true });
-
-  function main() {
-    if (document.querySelector('#video_player iframe')) {
-      showPanel(createErrorPanel());
-    } else if (document.querySelector('#video_player video')) {
-      showPanel(createDownloadPanel());
-    }
-  }
 
   function createDownloadPanel() {
     const videoSources = {

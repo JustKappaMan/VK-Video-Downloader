@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK-Video-Downloader-mobile
 // @namespace    https://github.com/JustKappaMan
-// @version      1.1.2
+// @version      1.1.3
 // @license      MIT
 // @description  Скачивайте видео с сайта «ВКонтакте» в желаемом качестве
 // @author       Kirill "JustKappaMan" Volozhanin
@@ -19,35 +19,35 @@
   'use strict';
 
   let lastUrl = location.href;
-  let playerObserverIsRunning = false;
+  let checkerHasBeenCalled = false;
+  let showPanelHasBeenCalled = false;
 
-  const pageObserver = new MutationObserver(() => {
+  new MutationObserver(() => {
     if (location.href !== lastUrl) {
       lastUrl = location.href;
-      playerObserverIsRunning = false;
+      checkerHasBeenCalled = false;
+      showPanelHasBeenCalled = false;
     }
 
     if (
       /^\/video[^\/]+$/.test(location.pathname) &&
-      document.querySelector('vk-video-player') &&
-      !playerObserverIsRunning
+      !checkerHasBeenCalled &&
+      document.querySelector('div.VideoPage__playerContainer')
     ) {
-      playerObserverIsRunning = true;
-      const hiddenPlayer = document.querySelector('vk-video-player').shadowRoot;
-      const playerObserver = new MutationObserver(() => {
-        if (hiddenPlayer.querySelector('video')) {
-          playerObserver.disconnect();
+      checkerHasBeenCalled = true;
+      const checker = setInterval(() => {
+        if (!showPanelHasBeenCalled && document.querySelector('div.VideoPage__playerContainer vk-video-player')) {
+          showPanelHasBeenCalled = true;
+          clearInterval(checker);
           showDownloadPanel();
-        } else if (hiddenPlayer.querySelector('iframe')) {
-          playerObserver.disconnect();
+        } else if (!showPanelHasBeenCalled && document.querySelector('div.VideoPage__playerContainer iframe')) {
+          showPanelHasBeenCalled = true;
+          clearInterval(checker);
           showErrorPanel();
         }
-      });
-      playerObserver.observe(hiddenPlayer, { subtree: true, childList: true });
+      }, 500);
     }
-  });
-
-  pageObserver.observe(document.body, { subtree: true, childList: true });
+  }).observe(document.body, { subtree: true, childList: true });
 
   function showDownloadPanel() {
     const videoSources = window.videoMvkSdk.config.videos[0].sources.MPEG;

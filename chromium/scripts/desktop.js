@@ -1,34 +1,31 @@
 'use strict';
 
 let lastUrl = location.href;
-let mainHasBeenCalled = false;
+let checkerHasBeenCalled = false;
+let showPanelHasBeenCalled = false;
 
 new MutationObserver(() => {
   if (location.href !== lastUrl) {
     lastUrl = location.href;
-    mainHasBeenCalled = false;
+    checkerHasBeenCalled = false;
+    showPanelHasBeenCalled = false;
   }
 
-  if (location.search.includes('z=video')) {
+  if (location.search.includes('z=video') && !checkerHasBeenCalled) {
+    checkerHasBeenCalled = true;
     const checker = setInterval(() => {
-      if (document.querySelector('#video_player')) {
+      if (!showPanelHasBeenCalled && document.querySelector('#video_player video')) {
+        showPanelHasBeenCalled = true;
         clearInterval(checker);
-        if (!mainHasBeenCalled) {
-          mainHasBeenCalled = true;
-          main();
-        }
+        showDownloadPanel();
+      } else if (!showPanelHasBeenCalled && document.querySelector('#video_player iframe')) {
+        showPanelHasBeenCalled = true;
+        clearInterval(checker);
+        showErrorPanel();
       }
-    }, 100);
+    }, 500);
   }
 }).observe(document.body, { subtree: true, childList: true });
-
-function main() {
-  if (document.querySelector('#video_player iframe')) {
-    showErrorPanel();
-  } else if (document.querySelector('#video_player video')) {
-    showDownloadPanel();
-  }
-}
 
 function showDownloadPanel() {
   const script = document.createElement('script');
