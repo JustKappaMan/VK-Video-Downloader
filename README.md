@@ -1,6 +1,6 @@
 # VK Video Downloader
 ![MIT License](https://img.shields.io/github/license/JustKappaMan/VK-Video-Downloader)
-![Version 1.1.4](https://img.shields.io/badge/version-1.1.4-blue)
+![Version 1.1.5](https://img.shields.io/badge/version-1.1.5-blue)
 ![Checked with ESLint](https://img.shields.io/badge/ESLint-checked-blueviolet)
 
 VK — хранилище интересного мне видеоконтента. Относительно недавно просмотр видео на бюджетных устройствах (особенно в приложении) стал невозможен по ряду причин:
@@ -20,11 +20,11 @@ VK — хранилище интересного мне видеоконтент
   * Активируйте __Режим разработчика__ (если такая функция имеется)
   * Нажмите __Загрузить распакованное__ (или нечто подобное)
   * Выберите папку __chromium__ из распакованного архива
-* Любые браузеры с поддержкой [Tampermonkey](https://www.tampermonkey.net/)
-  * Создайте в Tampermonkey новый скрипт, __удалите из него стартовый код__
-  * Скопируйте в него содержимое файла [tampermonkey/scripts/desktop.js](https://github.com/JustKappaMan/VK-Video-Downloader/blob/main/tampermonkey/scripts/desktop.js) и сохраните его
-  * Создайте в Tampermonkey новый скрипт, __удалите из него весь стартовый код__
-  * Скопируйте в него содержимое файла [tampermonkey/scripts/mobile.js](https://github.com/JustKappaMan/VK-Video-Downloader/blob/main/tampermonkey/scripts/mobile.js) и сохраните его
+* Любые браузеры с поддержкой Tampermonkey/Greasemonkey/Violentmonkey
+  * Создайте в расширении новый скрипт, __удалите из него стартовый код__
+  * Скопируйте в него содержимое файла [tampermonkey/scripts/desktop.js](https://github.com/JustKappaMan/VK-Video-Downloader/blob/main/monkeys/scripts/desktop.js) и сохраните его
+  * Создайте в расширении новый скрипт, __удалите из него весь стартовый код__
+  * Скопируйте в него содержимое файла [tampermonkey/scripts/mobile.js](https://github.com/JustKappaMan/VK-Video-Downloader/blob/main/monkeys/scripts/mobile.js) и сохраните его
 ## Как пользоваться
 * Откройте любое видео на [vk.com](https://vk.com/) или [m.vk.com](https://m.vk.com/)
 * Кликните по одной из появившихся под плеером ссылок для скачивания

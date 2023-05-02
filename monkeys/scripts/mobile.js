@@ -1,15 +1,13 @@
 // ==UserScript==
 // @name         VK-Video-Downloader-mobile
 // @namespace    https://github.com/JustKappaMan
-// @version      1.1.4
-// @license      MIT
+// @version      1.1.5
 // @description  Скачивайте видео с сайта «ВКонтакте» в желаемом качестве
 // @author       Kirill "JustKappaMan" Volozhanin
 // @match        https://m.vk.com/*
 // @run-at       document-idle
-// @iconURL      https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/tampermonkey/icons/icon128.png
+// @icon         https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/tampermonkey/icons/icon128.png
 // @homepageURL  https://github.com/JustKappaMan/VK-Video-Downloader
-// @supportURL   https://github.com/JustKappaMan/VK-Video-Downloader/issues
 // @downloadURL  https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/tampermonkey/scripts/mobile.js
 // @updateURL    https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/tampermonkey/scripts/mobile.js
 // @grant        none
@@ -55,10 +53,11 @@
 
   function showDownloadPanel() {
     const isClip = /^\/clip[^\/]+$/.test(location.pathname);
+    const supportedWindow = typeof unsafeWindow === 'undefined' ? window : unsafeWindow;
     let videoSources = {};
 
     if (!isClip) {
-      const videoSources = window.videoMvkSdk.config.videos[0].sources.MPEG;
+      videoSources = supportedWindow.videoMvkSdk.config.videos[0].sources.MPEG;
     } else {
       const sourceTags = Array.from(document.querySelectorAll('video source[type="video/mp4"]')).reverse();
 

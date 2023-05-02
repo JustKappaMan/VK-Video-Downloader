@@ -1,15 +1,13 @@
 // ==UserScript==
 // @name         VK-Video-Downloader-desktop
 // @namespace    https://github.com/JustKappaMan
-// @version      1.1.4
-// @license      MIT
+// @version      1.1.5
 // @description  Скачивайте видео с сайта «ВКонтакте» в желаемом качестве
 // @author       Kirill "JustKappaMan" Volozhanin
 // @match        https://vk.com/*
 // @run-at       document-idle
-// @iconURL      https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/tampermonkey/icons/icon128.png
+// @icon         https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/tampermonkey/icons/icon128.png
 // @homepageURL  https://github.com/JustKappaMan/VK-Video-Downloader
-// @supportURL   https://github.com/JustKappaMan/VK-Video-Downloader/issues
 // @downloadURL  https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/tampermonkey/scripts/desktop.js
 // @updateURL    https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/tampermonkey/scripts/desktop.js
 // @grant        none
@@ -46,15 +44,16 @@
   }).observe(document.body, { subtree: true, childList: true });
 
   function createDownloadPanel() {
+    const supportedWindow = typeof unsafeWindow === 'undefined' ? window : unsafeWindow;
     const videoSources = {
-      '144p': window.mvcur.player.vars.url144,
-      '240p': window.mvcur.player.vars.url240,
-      '360p': window.mvcur.player.vars.url360,
-      '480p': window.mvcur.player.vars.url480,
-      '720p': window.mvcur.player.vars.url720,
-      '1080p': window.mvcur.player.vars.url1080,
-      '1440p': window.mvcur.player.vars.url1440,
-      '2160p': window.mvcur.player.vars.url2160,
+      '144p': supportedWindow.mvcur.player.vars.url144,
+      '240p': supportedWindow.mvcur.player.vars.url240,
+      '360p': supportedWindow.mvcur.player.vars.url360,
+      '480p': supportedWindow.mvcur.player.vars.url480,
+      '720p': supportedWindow.mvcur.player.vars.url720,
+      '1080p': supportedWindow.mvcur.player.vars.url1080,
+      '1440p': supportedWindow.mvcur.player.vars.url1440,
+      '2160p': supportedWindow.mvcur.player.vars.url2160,
     };
 
     const label = document.createElement('span');
