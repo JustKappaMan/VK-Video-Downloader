@@ -11,7 +11,7 @@ new MutationObserver(() => {
     showPanelHasBeenCalled = false;
   }
 
-  if (location.search.includes('z=video') && !checkerHasBeenCalled) {
+  if ((location.search.includes('z=video') || location.search.includes('z=clip')) && !checkerHasBeenCalled) {
     checkerHasBeenCalled = true;
     const checker = setInterval(() => {
       if (!showPanelHasBeenCalled && document.querySelector('#video_player video')) {
@@ -32,7 +32,7 @@ function showDownloadPanel() {
   script.charset = 'utf-8';
   script.type = 'text/javascript';
   script.src = chrome.runtime.getURL('scripts/desktop-injection.js');
-  document.querySelector('body').appendChild(script);
+  document.body.appendChild(script);
 }
 
 function showErrorPanel() {
@@ -47,9 +47,9 @@ function showErrorPanel() {
 
   /*
    * Не под всеми видео есть блок с названием.
-   * Если он есть - располагаем ссылки над ним.
+   * Если он есть - располагаем панель над ним.
    * Иначе - над блоком с кнопками лайка, репоста и т.п.
-   * Таким образом ссылки всегда будут находиться сразу под плеером.
+   * Таким образом панель всегда будет находиться сразу под плеером.
    */
   const videoTitleBlock = document.querySelector('div.mv_title_wrap');
   if (videoTitleBlock) {

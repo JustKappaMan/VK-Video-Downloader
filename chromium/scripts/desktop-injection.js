@@ -30,18 +30,23 @@
     }
   }
 
-  /*
-   * Не под всеми видео есть блок с названием.
-   * Если он есть - располагаем ссылки над ним.
-   * Иначе - над блоком с кнопками лайка, репоста и т.п.
-   * Таким образом ссылки всегда будут находиться сразу под плеером.
-   */
-  const videoTitleBlock = document.querySelector('div.mv_title_wrap');
-  if (videoTitleBlock) {
-    panel.style.margin = '8px 0';
-    videoTitleBlock.before(panel);
+  if (location.search.includes('z=video')) {
+    /*
+     * Не под всеми видео есть блок с названием.
+     * Если он есть - располагаем панель над ним.
+     * Иначе - над блоком с кнопками лайка, репоста и т.п.
+     * Таким образом панель всегда будет находиться сразу под плеером.
+     */
+    const videoTitleBlock = document.querySelector('div.mv_title_wrap');
+    if (videoTitleBlock) {
+      panel.style.margin = '8px 0';
+      videoTitleBlock.before(panel);
+    } else {
+      panel.style.margin = '8px 15px';
+      document.querySelector('div.mv_actions_block').before(panel);
+    }
   } else {
-    panel.style.margin = '8px 15px';
-    document.querySelector('div.mv_actions_block').before(panel);
+    panel.style.margin = '8px 15px 0';
+    document.querySelector('div.VerticalVideoLayerInfo__mainInfoWrap').after(panel);
   }
 })();

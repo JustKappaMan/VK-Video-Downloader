@@ -12,13 +12,17 @@ new MutationObserver(() => {
   }
 
   if (
-    /^\/video[^\/]+$/.test(location.pathname) &&
+    /^\/(?:video|clip)[^\/]+$/.test(location.pathname) &&
     !checkerHasBeenCalled &&
-    document.querySelector('div.VideoPage__playerContainer')
+    (document.querySelector('div.VideoPage__playerContainer') || document.querySelector('div.VideoPage__video'))
   ) {
     checkerHasBeenCalled = true;
     const checker = setInterval(() => {
-      if (!showPanelHasBeenCalled && document.querySelector('div.VideoPage__playerContainer vk-video-player')) {
+      if (
+        !showPanelHasBeenCalled &&
+        (document.querySelector('div.VideoPage__playerContainer vk-video-player') ||
+          document.querySelector('div.VideoPage__video video'))
+      ) {
         showPanelHasBeenCalled = true;
         clearInterval(checker);
         showDownloadPanel();
@@ -36,7 +40,7 @@ function showDownloadPanel() {
   script.charset = 'utf-8';
   script.type = 'text/javascript';
   script.src = chrome.runtime.getURL('scripts/mobile-injection.js');
-  document.querySelector('body').appendChild(script);
+  document.body.appendChild(script);
 }
 
 function showErrorPanel() {

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK-Video-Downloader-mobile
 // @namespace    https://github.com/JustKappaMan
-// @version      1.1.3
+// @version      1.1.4
 // @license      MIT
 // @description  Скачивайте видео с сайта «ВКонтакте» в желаемом качестве
 // @author       Kirill "JustKappaMan" Volozhanin
@@ -30,13 +30,17 @@
     }
 
     if (
-      /^\/video[^\/]+$/.test(location.pathname) &&
+      /^\/(?:video|clip)[^\/]+$/.test(location.pathname) &&
       !checkerHasBeenCalled &&
-      document.querySelector('div.VideoPage__playerContainer')
+      (document.querySelector('div.VideoPage__playerContainer') || document.querySelector('div.VideoPage__video'))
     ) {
       checkerHasBeenCalled = true;
       const checker = setInterval(() => {
-        if (!showPanelHasBeenCalled && document.querySelector('div.VideoPage__playerContainer vk-video-player')) {
+        if (
+          !showPanelHasBeenCalled &&
+          (document.querySelector('div.VideoPage__playerContainer vk-video-player') ||
+            document.querySelector('div.VideoPage__video video'))
+        ) {
           showPanelHasBeenCalled = true;
           clearInterval(checker);
           showDownloadPanel();
@@ -50,7 +54,34 @@
   }).observe(document.body, { subtree: true, childList: true });
 
   function showDownloadPanel() {
-    const videoSources = window.videoMvkSdk.config.videos[0].sources.MPEG;
+    const isClip = /^\/clip[^\/]+$/.test(location.pathname);
+    let videoSources = {};
+
+    if (!isClip) {
+      const videoSources = window.videoMvkSdk.config.videos[0].sources.MPEG;
+    } else {
+      const sourceTags = Array.from(document.querySelectorAll('video source[type="video/mp4"]')).reverse();
+
+      for (const tag of sourceTags) {
+        if (tag.src.includes('&type=4')) {
+          videoSources['144p'] = tag.src;
+        } else if (tag.src.includes('&type=0')) {
+          videoSources['240p'] = tag.src;
+        } else if (tag.src.includes('&type=1')) {
+          videoSources['360p'] = tag.src;
+        } else if (tag.src.includes('&type=2')) {
+          videoSources['480p'] = tag.src;
+        } else if (tag.src.includes('&type=3')) {
+          videoSources['720p'] = tag.src;
+        } else if (tag.src.includes('&type=5')) {
+          videoSources['1080p'] = tag.src;
+        } else if (tag.src.includes('&type=6')) {
+          videoSources['1440p'] = tag.src;
+        } else if (tag.src.includes('&type=7')) {
+          videoSources['2160p'] = tag.src;
+        }
+      }
+    }
 
     const label = document.createElement('span');
     label.innerText = 'Скачать:';
@@ -58,7 +89,6 @@
 
     const panel = document.createElement('div');
     panel.id = 'vkVideoDownloaderPanel';
-    panel.style.margin = '8px 16px';
     panel.appendChild(label);
 
     for (const [quality, url] of Object.entries(videoSources)) {
@@ -69,7 +99,13 @@
       panel.appendChild(aTag);
     }
 
-    document.querySelector('div.VideoPage__playerContainer').after(panel);
+    if (!isClip) {
+      panel.style.margin = '8px 16px';
+      document.querySelector('div.VideoPage__playerContainer').after(panel);
+    } else {
+      panel.style.margin = '8px 12px';
+      document.querySelector('div.VideoPage__video').after(panel);
+    }
   }
 
   function showErrorPanel() {
