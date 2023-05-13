@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK-Video-Downloader-desktop
 // @namespace    https://github.com/JustKappaMan
-// @version      1.1.5
+// @version      1.1.6
 // @description  Скачивайте видео с сайта «ВКонтакте» в желаемом качестве
 // @author       Kirill "JustKappaMan" Volozhanin
 // @match        https://vk.com/*
@@ -27,7 +27,7 @@
       showPanelHasBeenCalled = false;
     }
 
-    if ((location.search.includes('z=video') || location.search.includes('z=clip')) && !checkerHasBeenCalled) {
+    if ((/z=(?:video|clip)/.test(location.search) || /^\/(?:video|clip)[^\/]+$/.test(location.pathname)) && !checkerHasBeenCalled) {
       checkerHasBeenCalled = true;
       const checker = setInterval(() => {
         if (!showPanelHasBeenCalled && document.querySelector('#video_player video')) {
@@ -91,7 +91,8 @@
   }
 
   function showPanel(panel) {
-    if (location.search.includes('z=video')) {
+    const isClip = location.search.includes('z=clip') || /^\/clip[^\/]+$/.test(location.pathname);
+    if (!isClip) {
       /*
        * Не под всеми видео есть блок с названием.
        * Если он есть - располагаем панель над ним.

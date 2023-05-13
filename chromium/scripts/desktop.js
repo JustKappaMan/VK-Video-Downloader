@@ -11,7 +11,7 @@ new MutationObserver(() => {
     showPanelHasBeenCalled = false;
   }
 
-  if ((location.search.includes('z=video') || location.search.includes('z=clip')) && !checkerHasBeenCalled) {
+  if ((/z=(?:video|clip)/.test(location.search) || /^\/(?:video|clip)[^\/]+$/.test(location.pathname)) && !checkerHasBeenCalled) {
     checkerHasBeenCalled = true;
     const checker = setInterval(() => {
       if (!showPanelHasBeenCalled && document.querySelector('#video_player video')) {

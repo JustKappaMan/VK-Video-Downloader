@@ -29,8 +29,9 @@
       panel.appendChild(aTag);
     }
   }
-
-  if (location.search.includes('z=video')) {
+  
+  const isClip = location.search.includes('z=clip') || /^\/clip[^\/]+$/.test(location.pathname);
+  if (!isClip) {
     /*
      * Не под всеми видео есть блок с названием.
      * Если он есть - располагаем панель над ним.
