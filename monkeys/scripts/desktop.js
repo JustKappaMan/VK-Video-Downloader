@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK-Video-Downloader-desktop
 // @namespace    https://github.com/JustKappaMan
-// @version      1.1.6
+// @version      1.1.7
 // @description  Скачивайте видео с сайта «ВКонтакте» в желаемом качестве
 // @author       Kirill "JustKappaMan" Volozhanin
 // @match        https://vk.com/*
@@ -27,7 +27,10 @@
       showPanelHasBeenCalled = false;
     }
 
-    if ((/z=(?:video|clip)/.test(location.search) || /^\/(?:video|clip)[^\/]+$/.test(location.pathname)) && !checkerHasBeenCalled) {
+    if (
+      (/z=(?:video|clip)/.test(location.search) || /^\/(?:video|clip)[^\/s]+$/.test(location.pathname)) &&
+      !checkerHasBeenCalled
+    ) {
       checkerHasBeenCalled = true;
       const checker = setInterval(() => {
         if (!showPanelHasBeenCalled && document.querySelector('#video_player video')) {
