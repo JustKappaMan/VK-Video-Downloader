@@ -32,12 +32,6 @@
   
   const isClip = location.search.includes('z=clip') || /^\/clip[^\/]+$/.test(location.pathname);
   if (!isClip) {
-    /*
-     * Не под всеми видео есть блок с названием.
-     * Если он есть - располагаем панель над ним.
-     * Иначе - над блоком с кнопками лайка, репоста и т.п.
-     * Таким образом панель всегда будет находиться сразу под плеером.
-     */
     const videoTitleBlock = document.querySelector('div.mv_title_wrap');
     if (videoTitleBlock) {
       panel.style.margin = '8px 0';
