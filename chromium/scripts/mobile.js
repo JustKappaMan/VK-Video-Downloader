@@ -45,7 +45,7 @@ function showDownloadPanel() {
 
 function showErrorPanel() {
   const label = document.createElement('span');
-  label.innerText = 'Видео со стороннего сайта. Воспользуйтесь инструментами для скачивания с исходного сайта.';
+  label.innerText = 'Видео со стороннего сайта. Воспользуйтесь инструментами для скачивания с него.';
   label.style.color = '#f00';
 
   const panel = document.createElement('div');
