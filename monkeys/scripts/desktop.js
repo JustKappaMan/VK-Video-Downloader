@@ -14,6 +14,7 @@
 // ==/UserScript==
 
 (function () {
+  'use strict';
   let lastUrl = location.href;
   let checkerHasBeenCalled = false;
   let showPanelHasBeenCalled = false;
