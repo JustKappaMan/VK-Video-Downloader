@@ -29,7 +29,6 @@
 * Наслаждайтесь локальным просмотром видео в желаемом качестве 🥳
 
 ## Благодарность
-* [JetBrains](https://www.jetbrains.com) за [Open Source Development лицензию](https://www.jetbrains.com/community/opensource) на их продукты
 * [Rizki Ahmad Fauzi](https://www.flaticon.com/authors/rizki-ahmad-fauzi) за иконки
 
 ## Информация о лицензии
