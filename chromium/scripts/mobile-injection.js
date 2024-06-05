@@ -36,6 +36,14 @@
 
   const panel = document.createElement('div');
   panel.id = 'vkVideoDownloaderPanel';
+  panel.style.position = 'fixed';
+  panel.style.left = '16px';
+  panel.style.bottom = '16px';
+  panel.style.zIndex = '2147483647';
+  panel.style.padding = '4px';
+  panel.style.color = '#fff';
+  panel.style.backgroundColor = '#07f';
+  panel.style.border = '1px solid #fff';
   panel.appendChild(label);
 
   for (const [quality, url] of Object.entries(videoSources)) {
@@ -43,14 +51,9 @@
     aTag.href = url;
     aTag.innerText = quality;
     aTag.style.margin = '0 2px';
+    aTag.style.color = '#fff';
     panel.appendChild(aTag);
   }
 
-  if (!isClip) {
-    panel.style.margin = '8px 16px';
-    document.querySelector('div.VideoPage__playerContainer').after(panel);
-  } else {
-    panel.style.margin = '8px 12px';
-    document.querySelector('div.VideoPage__video').after(panel);
-  }
+  document.body.appendChild(panel);
 })();

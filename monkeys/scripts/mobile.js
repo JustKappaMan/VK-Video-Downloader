@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK-Video-Downloader-mobile
 // @namespace    https://github.com/JustKappaMan
-// @version      1.1.8
+// @version      1.1.9
 // @description  Скачивайте видео с сайта «ВКонтакте» в желаемом качестве
 // @author       Kirill "JustKappaMan" Volozhanin
 // @match        https://m.vk.com/*
@@ -24,6 +24,11 @@
       lastUrl = location.href;
       checkerHasBeenCalled = false;
       showPanelHasBeenCalled = false;
+
+      const old_panel = document.querySelector('#vkVideoDownloaderPanel');
+      if (old_panel !== null) {
+        old_panel.remove();
+      }
     }
 
     if (
@@ -87,6 +92,14 @@
 
     const panel = document.createElement('div');
     panel.id = 'vkVideoDownloaderPanel';
+    panel.style.position = 'fixed';
+    panel.style.left = '16px';
+    panel.style.bottom = '16px';
+    panel.style.zIndex = '2147483647';
+    panel.style.padding = '4px';
+    panel.style.color = '#fff';
+    panel.style.backgroundColor = '#07f';
+    panel.style.border = '1px solid #fff';
     panel.appendChild(label);
 
     for (const [quality, url] of Object.entries(videoSources)) {
@@ -94,28 +107,29 @@
       aTag.href = url;
       aTag.innerText = quality;
       aTag.style.margin = '0 2px';
+      aTag.style.color = '#fff';
       panel.appendChild(aTag);
     }
 
-    if (!isClip) {
-      panel.style.margin = '8px 16px';
-      document.querySelector('div.VideoPage__playerContainer').after(panel);
-    } else {
-      panel.style.margin = '8px 12px';
-      document.querySelector('div.VideoPage__video').after(panel);
-    }
+    document.body.appendChild(panel);
   }
 
   function showErrorPanel() {
     const label = document.createElement('span');
     label.innerText = 'Видео со стороннего сайта. Воспользуйтесь инструментами для скачивания с него.';
-    label.style.color = '#f00';
 
     const panel = document.createElement('div');
     panel.id = 'vkVideoDownloaderPanel';
-    panel.style.margin = '8px 16px';
+    panel.style.position = 'fixed';
+    panel.style.left = '16px';
+    panel.style.bottom = '16px';
+    panel.style.zIndex = '2147483647';
+    panel.style.padding = '4px';
+    panel.style.color = '#fff';
+    panel.style.backgroundColor = '#07f';
+    panel.style.border = '1px solid #fff';
     panel.appendChild(label);
 
-    document.querySelector('div.VideoPage__playerContainer').after(panel);
+    document.body.appendChild(panel);
   }
 })();

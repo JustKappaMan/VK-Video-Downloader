@@ -9,6 +9,11 @@ new MutationObserver(() => {
     lastUrl = location.href;
     checkerHasBeenCalled = false;
     showPanelHasBeenCalled = false;
+
+    const old_panel = document.querySelector('#vkVideoDownloaderPanel');
+    if (old_panel !== null) {
+      old_panel.remove();
+    }
   }
 
   if (
@@ -46,12 +51,18 @@ function showDownloadPanel() {
 function showErrorPanel() {
   const label = document.createElement('span');
   label.innerText = 'Видео со стороннего сайта. Воспользуйтесь инструментами для скачивания с него.';
-  label.style.color = '#f00';
 
   const panel = document.createElement('div');
   panel.id = 'vkVideoDownloaderPanel';
-  panel.style.margin = '8px 16px';
+  panel.style.position = 'fixed';
+  panel.style.left = '16px';
+  panel.style.bottom = '16px';
+  panel.style.zIndex = '2147483647';
+  panel.style.padding = '4px';
+  panel.style.color = '#fff';
+  panel.style.backgroundColor = '#07f';
+  panel.style.border = '1px solid #fff';
   panel.appendChild(label);
 
-  document.querySelector('div.VideoPage__playerContainer').after(panel);
+  document.body.appendChild(panel);
 }
