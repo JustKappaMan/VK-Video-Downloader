@@ -30,6 +30,7 @@
 
 ## Благодарность
 * [Rizki Ahmad Fauzi](https://www.flaticon.com/authors/rizki-ahmad-fauzi) за иконки
+* [SpukiBugi](https://github.com/SpukiBugi) за помощь после очередного обновления VK
 
 ## Информация о лицензии
 Продукт распространяется под лицензией MIT.
