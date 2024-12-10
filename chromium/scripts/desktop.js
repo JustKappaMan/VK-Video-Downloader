@@ -17,10 +17,12 @@ new MutationObserver(() => {
   }
 
   if (
-    (/z=(?:video|clip)/.test(location.search) || /^\/(?:video|clip)[^\/s]+$/.test(location.pathname)) &&
-    !checkerHasBeenCalled
-  ) {
-    checkerHasBeenCalled = true;
+      (/z=(?:video|clip)/.test(location.search) ||
+       /^\/(?:video|clip)[^\/s]+$/.test(location.pathname) ||
+       /^\/playlist\/[\d-]+/.test(location.pathname)) &&
+      !checkerHasBeenCalled
+    ) {
+      checkerHasBeenCalled = true;
     const checker = setInterval(() => {
       if (!showPanelHasBeenCalled && document.querySelector("#video_player video")) {
         showPanelHasBeenCalled = true;

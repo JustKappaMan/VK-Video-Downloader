@@ -33,7 +33,9 @@
     }
 
     if (
-      (/z=(?:video|clip)/.test(location.search) || /^\/(?:video|clip)[^\/s]+$/.test(location.pathname)) &&
+      (/z=(?:video|clip)/.test(location.search) ||
+       /^\/(?:video|clip)[^\/s]+$/.test(location.pathname) ||
+       /^\/playlist\/[\d-]+/.test(location.pathname)) &&
       !checkerHasBeenCalled
     ) {
       checkerHasBeenCalled = true;
