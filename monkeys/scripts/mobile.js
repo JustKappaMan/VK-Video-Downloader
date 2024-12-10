@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK-Video-Downloader-mobile
 // @namespace    https://github.com/JustKappaMan
-// @version      1.1.10
+// @version      1.1.11
 // @description  Скачивайте видео с сайта «ВКонтакте» в желаемом качестве
 // @author       Kirill "JustKappaMan" Volozhanin
 // @match        https://m.vk.com/*
