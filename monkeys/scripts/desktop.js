@@ -34,8 +34,8 @@
 
     if (
       (/z=(?:video|clip)/.test(location.search) ||
-       /^\/(?:video|clip)[^\/s]+$/.test(location.pathname) ||
-       /^\/playlist\/[\d-]+/.test(location.pathname)) &&
+        /^\/(?:video|clip)[^\/s]+$/.test(location.pathname) ||
+        /^\/playlist\/[\d-]+/.test(location.pathname)) &&
       !checkerHasBeenCalled
     ) {
       checkerHasBeenCalled = true;
