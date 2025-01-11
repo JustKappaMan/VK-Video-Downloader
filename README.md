@@ -18,10 +18,8 @@
   * Нажмите __Загрузить распакованное__ (или нечто подобное)
   * Выберите папку __chromium__ из распакованного архива
 * Любые браузеры с поддержкой Tampermonkey/Greasemonkey/Violentmonkey
-  * Создайте в расширении новый скрипт, __удалите из него стартовый код__
-  * Скопируйте в него содержимое файла [monkeys/scripts/desktop.js](https://github.com/JustKappaMan/VK-Video-Downloader/blob/main/monkeys/scripts/desktop.js) и сохраните его
-  * Создайте в расширении новый скрипт, __удалите из него стартовый код__
-  * Скопируйте в него содержимое файла [monkeys/scripts/mobile.js](https://github.com/JustKappaMan/VK-Video-Downloader/blob/main/monkeys/scripts/mobile.js) и сохраните его
+  * [Установить desktop версию](https://github.com/JustKappaMan/VK-Video-Downloader/raw/refs/heads/main/monkeys/scripts/VK-Video-Downloader-desktop.user.js)
+  * [Установить mobile версию](https://github.com/JustKappaMan/VK-Video-Downloader/raw/refs/heads/main/monkeys/scripts/VK-Video-Downloader-mobile.user.js)
 
 ## Как пользоваться
 * Откройте любое видео на [vk.com](https://vk.com)/[vk.ru](https://vk.ru)/[m.vk.com](https://m.vk.com)/[vkvideo.ru](https://vkvideo.ru)
