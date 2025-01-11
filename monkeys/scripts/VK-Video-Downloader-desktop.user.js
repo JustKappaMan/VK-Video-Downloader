@@ -10,8 +10,8 @@
 // @run-at       document-idle
 // @icon         https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/monkeys/icons/icon128.png
 // @homepageURL  https://github.com/JustKappaMan/VK-Video-Downloader
-// @downloadURL  https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/monkeys/scripts/desktop.js
-// @updateURL    https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/monkeys/scripts/desktop.js
+// @downloadURL  https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/monkeys/scripts/VK-Video-Downloader-desktop.user.js
+// @updateURL    https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/monkeys/scripts/VK-Video-Downloader-desktop.user.js
 // @grant        none
 // ==/UserScript==
 
