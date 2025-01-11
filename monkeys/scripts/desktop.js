@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         VK-Video-Downloader-desktop
 // @namespace    https://github.com/JustKappaMan
-// @version      1.1.11
+// @version      1.1.12
 // @description  Скачивайте видео с сайта «ВКонтакте» в желаемом качестве
 // @author       Kirill "JustKappaMan" Volozhanin
 // @match        https://vk.com/*
+// @match        https://vk.ru/*
 // @match        https://vkvideo.ru/*
 // @run-at       document-idle
 // @icon         https://raw.githubusercontent.com/JustKappaMan/VK-Video-Downloader/main/monkeys/icons/icon128.png

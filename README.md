@@ -1,6 +1,6 @@
 # VK Video Downloader
 ![MIT License](https://img.shields.io/github/license/JustKappaMan/VK-Video-Downloader)
-![Version 1.1.11](https://img.shields.io/badge/version-1.1.11-blue)
+![Version 1.1.12](https://img.shields.io/badge/version-1.1.12-blue)
 ![Checked with ESLint](https://img.shields.io/badge/ESLint-checked-blueviolet)
 
 Относительно недавно просмотр видео в VK на бюджетных устройствах (особенно в приложении) стал невозможен по ряду причин:
@@ -24,7 +24,7 @@
   * Скопируйте в него содержимое файла [monkeys/scripts/mobile.js](https://github.com/JustKappaMan/VK-Video-Downloader/blob/main/monkeys/scripts/mobile.js) и сохраните его
 
 ## Как пользоваться
-* Откройте любое видео на [vk.com](https://vk.com)/[m.vk.com](https://m.vk.com)/[vkvideo.ru](https://vkvideo.ru)
+* Откройте любое видео на [vk.com](https://vk.com)/[vk.ru](https://vk.ru)/[m.vk.com](https://m.vk.com)/[vkvideo.ru](https://vkvideo.ru)
 * Кликните по одной из появившихся в левом нижнем углу браузера ссылок для скачивания
 * Наслаждайтесь локальным просмотром видео в желаемом качестве 🥳
 
@@ -32,6 +32,7 @@
 * [Rizki Ahmad Fauzi](https://www.flaticon.com/authors/rizki-ahmad-fauzi) за иконки
 * [SpukiBugi](https://github.com/SpukiBugi) за помощь после очередного обновления VK
 * [iamcringyfox](https://github.com/iamcringyfox) за добавление скачивания со страниц плейлистов
+* [VerMishelb](https://github.com/VerMishelb) за напоминание о существовании домена [vk.ru](https://vk.ru)
 
 ## Информация о лицензии
 Продукт распространяется под лицензией MIT.
