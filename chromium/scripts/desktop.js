@@ -24,14 +24,10 @@ new MutationObserver(() => {
   ) {
     checkerHasBeenCalled = true;
     const checker = setInterval(() => {
-      if (!showPanelHasBeenCalled && document.querySelector("#video_player video")) {
+      if (!showPanelHasBeenCalled) {
         showPanelHasBeenCalled = true;
         clearInterval(checker);
         showDownloadPanel();
-      } else if (!showPanelHasBeenCalled && document.querySelector("#video_player iframe")) {
-        showPanelHasBeenCalled = true;
-        clearInterval(checker);
-        showErrorPanel();
       }
     }, 500);
   }
